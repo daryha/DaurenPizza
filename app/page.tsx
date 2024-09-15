@@ -7,7 +7,7 @@ import {
   TopBar,
 } from "@/components/shared";
 
-export default function Home() {Ё
+export default function Home() {
   return (
     <>
       <Container>
@@ -24,6 +24,7 @@ export default function Home() {Ё
 
           {/* Список товаров */}
           <div className="flex flex-col gap-16">Список товаров</div>
+          
         </div>
       </Container>
     </>
