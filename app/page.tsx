@@ -7,6 +7,8 @@ import {
   TopBar,
 } from "@/components/shared";
 
+import { ProductCard } from "@/components/shared/product-card";
+
 export default function Home() {
   return (
     <>
@@ -24,7 +26,15 @@ export default function Home() {
 
           {/* Список товаров */}
           <div className="flex flex-col gap-16">Список товаров</div>
-          
+
+          <div className="flex flex-col gap-16">
+            <ProductCard
+              id={1}
+              name="Пицца"
+              price={1500.0}
+              imageUrl="https://media.dodostatic.net/image/r:292x292/11EE7D5FD6097096B601585D57F44A6F.avif"
+            />
+          </div>
         </div>
       </Container>
     </>

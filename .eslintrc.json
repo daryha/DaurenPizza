@@ -1,3 +1,10 @@
 {
+<<<<<<< HEAD
   "extends": ["next/core-web-vitals", "next/typescript"]
+=======
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "@next/next/no-img-element": "off"
+  }
+>>>>>>> 22eb5cd237f1a4d1206192cdb28b48f319abcb3a
 }
