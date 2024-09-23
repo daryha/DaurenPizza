@@ -53,7 +53,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
           },
 
           {
-            text: "Моццарелла",
+            text: "Моцарелла",
             value: "2",
           },
           {
@@ -80,7 +80,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
           },
 
           {
-            text: "Моццарелла",
+            text: "Моцарелла",
             value: "2",
           },
           {
