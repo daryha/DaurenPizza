@@ -20,25 +20,25 @@ export const ProductCard: React.FC<Props> = ({
   imageUrl,
 }) => {
   return (
-    <div className={className}>
-      <Link href="/product/1">
-        <div className="flex justify-center p-6 bg-secondary rounded-lg h-[260px]">
-          <img className="w-[215px] h-[215px]" src="imgUrl" alt="Logo" />
+    <div className="w-[290px]">
+      <Link href={`/product/${id}`} className="flex flex-col space-y-3">
+        <div className="flex justify-center p-6 bg-secondary rounded-lg  ">
+          <img className="w-[215px] h-[215px]" src={imageUrl} alt="Logo" />
         </div>
-        <Title text={name} size="sm" className="mb-1 mt-3 font-bold"></Title>
+        <Title text={name} size="sm" className="mb-1 mt-3 font-bold "></Title>
         <p className="text-sm text-gray-400">
           томатный соус, моцарелла, пармезан, пепперони, грибы, болгарский
           перец, лук, оливки, артишоки, базилик, оливковое масло, чеснок,
           итальянские травы, специи.
         </p>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center mt-5">
           <span className="text-[20px]">
             от <b>{price} тнг</b>
           </span>
 
-          <Button>
-            <Plus size={20} className="mr-1"/>
+          <Button variant={"secondary"}>
+            <Plus size={20} className="mr-1" />
             Добавить
           </Button>
         </div>
