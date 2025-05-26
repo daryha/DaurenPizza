@@ -1,10 +1,4 @@
-import {
-  ChooseProductForm,
-  Container,
-  PizzaImage,
-  ProductForm,
-  Title,
-} from "@/shared/components/shared";
+import { Container, ProductForm } from "@/shared/components/shared";
 import { prisma } from "@/prisma/prisma-cient";
 import { notFound } from "next/navigation";
 

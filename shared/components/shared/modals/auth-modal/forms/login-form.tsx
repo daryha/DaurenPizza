@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { formLoginSchema, TformLoginSchema } from "./schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Title } from "../../../title";
@@ -46,12 +46,7 @@ export const LoginForm: React.FC<Props> = ({ onClose }) => {
             <Title text="Вход в аккаунт" size="md" className="font-bold" />
             <p className="text-gray-400">Введите свою почту, чтобы войти в свой аккаунт</p>
           </div>
-          <img
-            src="/SMS.png"
-            alt="phone-icon"
-            width={50}
-            height={50}
-          />
+          <img src="/SMS.png" alt="phone-icon" width={50} height={50} />
         </div>
 
         <FormInput name="email" label="E-mail" required />

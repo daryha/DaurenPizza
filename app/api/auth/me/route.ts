@@ -3,11 +3,11 @@ import { authOptions } from "@/shared/constants/auth-options";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
-export async function GET(req: any, res: any) {
+export async function GET() {
   try {
-    const user = await getServerSession(req, res, authOptions);
+    const user = await getServerSession(authOptions);
 
     if (!user) {
       throw new Error("Вы не авторизованы");

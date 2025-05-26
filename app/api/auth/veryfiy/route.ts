@@ -1,6 +1,4 @@
 import { prisma } from "@/prisma/prisma-cient";
-import { error } from "console";
-import { Verified } from "lucide-react";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
