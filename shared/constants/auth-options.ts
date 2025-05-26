@@ -138,14 +138,13 @@ export const authOptions: AuthOptions = {
 
       if (findUser) {
         token.id = String(findUser.id);
-        token.email = String(findUser.email);
-        token.fullName = String(findUser.fullName);
+        token.email = findUser.email;
+        token.fullName = findUser.fullName;
         token.role = findUser.role;
       }
 
       return token;
     },
-
     session({ session, token }) {
       if (session?.user) {
         session.user.id = token.id;
@@ -156,24 +155,3 @@ export const authOptions: AuthOptions = {
     },
   },
 };
-
-// async jwt({ token }) {
-//   if (!token.email) {
-//     return token;
-//   }
-
-//   const findUser = await prisma.user.findFirst({
-//     where: {
-//       email: token.email,
-//     },
-//   });
-
-//   if (findUser) {
-//     token.id = String(findUser.id);
-//     token.email = String(findUser.email);
-//     token.fullName = String(findUser.fullName);
-//     token.role = findUser.role;
-//   }
-
-//   return token;
-// },

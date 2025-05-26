@@ -1,7 +1,15 @@
 {
-    "cSpell.words": [
-        "Вкусней",
-        "Главная",
-        "Корзина"
-    ]
+  "cSpell.words": [
+    "varification",
+    "Вкусней",
+    "Главная",
+    "должен",
+    "Корзина",
+    "корректную",
+    "Пароль",
+    "пицца",
+    "символов",
+    "содержать"
+  ],
+  "postman.settings.dotenv-detection-notification-visibility": false
 }
