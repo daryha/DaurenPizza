@@ -18,22 +18,14 @@ import { gerCartItemDetails } from "./../../lib";
 import { PizzaSize, PizzaType } from "@/shared/constants/pizza";
 import { useCart } from "@/shared/hooks";
 
-
 interface Props {
   className?: string;
 }
 
-export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
-  children,
-}) => {
-  const { totalAmount, updateItemQuantity, items, loading, removeCartItem } =
-    useCart();
+export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children }) => {
+  const { totalAmount, updateItemQuantity, items, loading, removeCartItem } = useCart();
 
-  const onClickCountButton = (
-    id: number,
-    quantity: number,
-    type: "plus" | "minus"
-  ) => {
+  const onClickCountButton = (id: number, quantity: number, type: "plus" | "minus") => {
     const newQuantity = type === "plus" ? quantity + 1 : quantity - 1;
     updateItemQuantity(id, newQuantity);
   };
@@ -54,26 +46,23 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
             <SheetTitle />
             <div className="-mx-6 mt-5 flex-1 overflow-auto  ">
               {items.map((item) => (
-                <div className="mb-2">
-                  <CartDrawerItem
-                    key={item.id}
-                    id={item.id}
-                    imageUrl={item.imageUrl}
-                    name={item.name}
-                    details={gerCartItemDetails(
-                      item.ingredients,
-                      item.pizzaType as PizzaType,
-                      item.pizzaSize as PizzaSize
-                    )}
-                    price={item.price}
-                    quantity={item.quantity}
-                    disabled={item.disabled}
-                    onClickCountButton={(type) =>
-                      onClickCountButton(item.id, item.quantity, type)
-                    }
-                    onClickDeleteButton={() => removeCartItem(item.id)}
-                  />
-                </div>
+                <CartDrawerItem
+                  className="mb-2"
+                  key={item.id}
+                  id={item.id}
+                  imageUrl={item.imageUrl}
+                  name={item.name}
+                  details={gerCartItemDetails(
+                    item.ingredients,
+                    item.pizzaType as PizzaType,
+                    item.pizzaSize as PizzaSize
+                  )}
+                  price={item.price}
+                  quantity={item.quantity}
+                  disabled={item.disabled}
+                  onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
+                  onClickDeleteButton={() => removeCartItem(item.id)}
+                />
               ))}
             </div>
             <SheetFooter className="-mx-6 bg-white p-8 flex flex-col ">

@@ -31,17 +31,10 @@ export const Stories: React.FC<Props> = ({ className }) => {
     document.body.style.overflow = open ? "hidden" : "auto";
 
     if (story.items.length > 0) {
+      window.scroll(0, 0);
       setOpen(true);
     }
   };
-
-  if (open) {
-    document.body.style.overflow = "hidden";
-  }
-
-  if (!open) {
-    document.body.style.overflow = "auto";
-  }
 
   return (
     <>
