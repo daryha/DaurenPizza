@@ -1,11 +1,10 @@
 "use client";
 
-import { CircleAlert } from "lucide-react";
 import { Input } from "../../ui";
 
 import { ClearButton } from "../clear-button";
 import { ErrorText } from "../error-text";
-import { useForm, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;

@@ -1,15 +1,12 @@
 import React from "react";
 import { WhiteBlock } from "../white-block";
-import { Input } from "../../ui";
 import { FormInput } from "../form";
-import { useSession } from "next-auth/react";
 
 interface Props {
   className?: string;
 }
 
 export const CheckoutPersonalForm: React.FC<Props> = ({ className }) => {
-
   return (
     <WhiteBlock title="2. Персональные данные " className={className}>
       <div className="grid grid-cols-2 gap-10 ">

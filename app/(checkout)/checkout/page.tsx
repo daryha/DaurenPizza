@@ -32,11 +32,11 @@ export default function CheckoutPage() {
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(CheckoutFormSchema),
     defaultValues: {
-      email: "daryha56@gmail.com",
-      firstName: "DAUREN",
-      lastName: "BALGABEKOV",
-      phone: "87479716857",
-      address: "пр-кт Мангилик Ел",
+      email: "",
+      firstName: "",
+      lastName: "",
+      phone: "",
+      address: "",
       comment: "",
     },
   });
