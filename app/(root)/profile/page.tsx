@@ -1,5 +1,4 @@
 import { prisma } from "@/prisma/prisma-cient";
-import { Favorite, ProfileForm } from "@/shared/components";
 import { ProfileInfo } from "@/shared/components/shared/profile/profile-info";
 import { getUserSession } from "@/shared/lib/get-user-session";
 import { redirect } from "next/navigation";
