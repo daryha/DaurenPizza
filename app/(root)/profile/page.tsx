@@ -1,7 +1,9 @@
 import { prisma } from "@/prisma/prisma-cient";
-import { ProfileForm } from "@/shared/components";
+import { Favorite, ProfileForm } from "@/shared/components";
+import { ProfileInfo } from "@/shared/components/shared/profile/profile-info";
 import { getUserSession } from "@/shared/lib/get-user-session";
 import { redirect } from "next/navigation";
+import React from "react";
 
 export default async function ProfilePage() {
   const session = await getUserSession();
@@ -22,7 +24,7 @@ export default async function ProfilePage() {
 
   return (
     <div>
-      <ProfileForm data={data} />
+      <ProfileInfo data={data} />
     </div>
   );
 }

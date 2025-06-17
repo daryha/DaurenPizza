@@ -4,23 +4,20 @@ import crypto from "crypto";
 import { findOrCreateCart } from "@/shared/lib/find-or-create-cart";
 import { CreateCartItemValues } from "@/shared/services/dto/cart.dto";
 import { updateCartTotalAmount } from "@/shared/lib";
+import { getUserSession } from "@/shared/lib/get-user-session";
 
 export async function GET(req: NextRequest) {
+  const userSession = await getUserSession();
+  const userId = Number(userSession?.id);
   try {
     const token = req.cookies.get("cartToken")?.value;
-    if (!token) {
+
+    if (!token && !userId) {
       return NextResponse.json({ totalAmount: 0, Items: [] });
     }
 
     const userCart = await prisma.cart.findFirst({
-      where: {
-        OR: [
-          {
-            token,
-          },
-        ],
-      },
-
+      where: userId ? { userId } : { token },
       include: {
         cartItem: {
           orderBy: {
@@ -46,6 +43,8 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  const userSession = await getUserSession();
+  const userId = Number(userSession?.id);
   try {
     let token = req.cookies.get("cartToken")?.value;
 
@@ -53,13 +52,27 @@ export async function POST(req: NextRequest) {
       token = crypto.randomUUID();
     }
 
-    const userCart = await findOrCreateCart(token);
+    if (token === null && userId) {
+      const newToken = crypto.randomUUID();
+      await prisma.cart.update({
+        where: {
+          userId,
+        },
+
+        data: {
+          token: newToken,
+        },
+      });
+    }
+
+    const userCart = await findOrCreateCart(token, userId);
+
     const data = (await req.json()) as CreateCartItemValues;
     const ingredientsCount = data.ingredients?.length || 0;
 
     const cartItems = await prisma.cartItem.findMany({
       where: {
-        cartId: userCart.id,
+        cartId: userCart?.id,
         productItemId: data.productItemId,
       },
       include: {
@@ -106,7 +119,7 @@ export async function POST(req: NextRequest) {
     } else {
       await prisma.cartItem.create({
         data: {
-          cartId: userCart.id,
+          cartId: Number(userCart?.id),
           productItemId: data.productItemId,
           quantity: 1,
           ingridients:
@@ -117,9 +130,9 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const updateUserCart = await updateCartTotalAmount(token);
+    const updateUserCart = await updateCartTotalAmount(String(userCart?.token));
     const response = NextResponse.json({ userCart: updateUserCart });
-    response.cookies.set("cartToken", token);
+    response.cookies.set("cartToken", String(userCart?.token));
     return response;
   } catch (error) {
     console.log(`[CART_POST]  Server error`, error);

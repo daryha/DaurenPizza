@@ -12,6 +12,8 @@ import { cookies } from "next/headers";
 
 export async function createOrder(data: CheckoutFormValues) {
   try {
+    const userSession = await getUserSession();
+    const userId = Number(userSession?.id);
     const cookieStore = cookies();
     const cartToken = (await cookieStore).get("cartToken")?.value;
 
@@ -52,6 +54,7 @@ export async function createOrder(data: CheckoutFormValues) {
     const order = await prisma.order.create({
       data: {
         token: cartToken,
+        userId,
         totalAmount: userCart.totalAmount,
         totalAmountRub: amountInRub,
         status: OrderStatus.PENDING,

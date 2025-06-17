@@ -21,6 +21,7 @@ export { CartCheckoutSide } from "./cart-checkout-side";
 export { ClearButton } from "./clear-button";
 export { ProfileButton } from "./profile-button";
 export { ProfileForm } from "./profile-form";
+export { Favorite } from "./profile/favorite-item";
 export * from "./form";
 export * from "./checkout";
 export * from "./modals";

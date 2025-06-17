@@ -30,6 +30,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<Ger
                     categoryId={category.id}
                     title={category.name}
                     items={category.products}
+                    
                   />
                 )
             )}

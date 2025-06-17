@@ -46,6 +46,9 @@ export const ProfileForm: React.FC<Props> = ({ className, data }) => {
   };
 
   const onClickSignOut = () => {
+    const cartCookie = ["cartToken=", "path=/", "max-age=0"].join("; ");
+
+    document.cookie = cartCookie;
     signOut({
       callbackUrl: "/",
     });

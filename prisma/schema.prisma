@@ -26,6 +26,7 @@ model User {
     cart             Cart?
     order            Order[]
     verificationCode VarificationCode?
+    favorites        Favorite[]
 }
 
 model Category {
@@ -46,10 +47,11 @@ model Product {
     Category   Category @relation(fields: [categoryId], references: [id])
     categoryId Int
 
-    createdAt  DateTime     @default(now())
-    updatedAt  DateTime     @updatedAt
-    ingridient Ingridient[]
-    variation  Variation[]
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+    ingridient  Ingridient[]
+    variation   Variation[]
+    favoritedBy Favorite[]
 }
 
 model Variation {
@@ -88,7 +90,7 @@ model Cart {
 
     totalAmount Int @default(0)
 
-    token String
+    token String?
 
     createdAt DateTime   @default(now())
     updatedAt DateTime   @updatedAt
@@ -168,6 +170,15 @@ model StoryItem {
 
     sourceUrl String
 
+    createdAt DateTime @default(now())
+}
+
+model Favorite {
+    id        Int      @id @default(autoincrement())
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId    Int
+    product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+    productId Int
     createdAt DateTime @default(now())
 }
 

@@ -44,7 +44,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
             <div key={index} className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse" />
           ))}
 
-        {stories.map((story) => (
+        {stories.slice(6).map((story) => (
           <img
             key={story.id}
             onClick={() => onClickStory(story)}

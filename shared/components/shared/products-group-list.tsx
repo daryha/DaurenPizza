@@ -8,6 +8,7 @@ import { useIntersection } from "react-use";
 import { useCategoryStore } from "@/shared/store/category";
 import { Product } from "@prisma/client";
 import { ProductWithRelations } from "@/types/prisma";
+import { useFavoriteStore } from "@/shared/store";
 
 interface Props {
   className?: string;
@@ -30,14 +31,16 @@ export const ProductGroupList: React.FC<Props> = ({
     threshold: 0.4,
   });
 
+  const fetchFavorite = useFavoriteStore((s) => s.fetchFavorite);
+
+  React.useEffect(() => {
+    fetchFavorite();
+  }, [fetchFavorite]);
+
   return (
     <div className={className} id={title} ref={intersectionRef}>
-      <Title
-        text={title}
-        size="sm"
-        className="font font-extrabold mt-5 mb-5"
-      ></Title>
-      <div className={cn("grid grid-cols-3 gap-[30px]", listClassName)}>
+      <Title text={title} size="sm" className="font font-extrabold mt-5 mb-5"></Title>
+      <div className={cn("grid grid-cols-3 gap-[50px]", listClassName)}>
         {items.map((product) => (
           <ProductCard
             key={product.id}

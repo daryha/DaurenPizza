@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../ui";
-import { CircleUser, UserRoundPlus } from "lucide-react";
+import { CircleUser, Heart, UserRoundPlus } from "lucide-react";
 import { useSession, signIn } from "next-auth/react";
 import Link from "next/link";
 
@@ -19,12 +19,23 @@ export const ProfileButton: React.FC<Props> = ({ className, onClickSingIn }) => 
           <UserRoundPlus size={16} /> Войти
         </Button>
       ) : (
-        <Link href={"/profile"}>
-          <Button variant={"secondary"} className="flex items-center gap-2">
-            <CircleUser size={18} />
-            Профиль
-          </Button>
-        </Link>
+        <>
+          <div className="flex items-center gap-4 ">
+            <Link href={"/profile?favorites"}>
+              <Button variant={"secondary"} className="flex items-center gap-2">
+                <Heart size={18} />
+                Любимые
+              </Button>
+            </Link>
+
+            <Link href={"/profile?profile"}>
+              <Button variant={"secondary"} className="flex items-center gap-2">
+                <CircleUser size={18} />
+                Профиль
+              </Button>
+            </Link>
+          </div>
+        </>
       )}
     </div>
   );

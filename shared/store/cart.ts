@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { Api } from "../services/api-client";
 import { CartStateItem, getCartDetails } from "../lib/get-cart-details";
 import { CreateCartItemValues } from "../services/dto/cart.dto";
-import { Item } from "@radix-ui/react-select";
 
 export interface CartState {
   loading: boolean;

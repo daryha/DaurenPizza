@@ -24,7 +24,6 @@ export const LoginForm: React.FC<Props> = ({ onClose }) => {
   const onSubmit = async (data: TformLoginSchema) => {
     try {
       const resp = await signIn("credentials", { ...data, redirect: false });
-
       if (!resp?.ok) {
         return toast.error("Не удалось войти в аккаунт");
       }

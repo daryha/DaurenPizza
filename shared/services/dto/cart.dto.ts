@@ -18,3 +18,7 @@ export interface CreateCartItemValues {
   productItemId: number;
   ingredients: number[];
 }
+
+export interface CreateFavoriteItem {
+  productId: number;
+}
